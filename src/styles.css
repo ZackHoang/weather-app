@@ -11,12 +11,14 @@
     font-size: 1.5rem;
 }
 
-/* form {
-    border: 1px solid black;
-} */
+form {
+    display: flex;
+    height: 3vh;
+    gap: 10px;
+}
 
 
-#search, button {
+#search {
     font-size: 1rem;
 }
 

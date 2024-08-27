@@ -2,12 +2,13 @@ function startStorage() {
     if (localStorage.length != 0) {
         localStorage.clear(); 
     }
-    localStorage.setItem("data", JSON.stringify([])); 
+    localStorage.setItem("day", JSON.stringify([])); 
+    localStorage.setItem("hours", JSON.stringify([])); 
 }
 
 //Fetch weather data
 function getWeather (location) {
-    fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days&key=PDXRH7AMTXUDESG42HDMGSUS7&contentType=json`, {
+    fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days%2Chours&key=PDXRH7AMTXUDESG42HDMGSUS7&contentType=json`, {
         "method": "GET",
         "headers": {
         }
@@ -17,21 +18,21 @@ function getWeather (location) {
       })
       .then(response => {
         console.log(response); 
-        const originArr = response.days; 
-        const processedArr = []; 
+        const originArrDays = response.days; 
+        const processedArrDays = []; 
         for (let i = 0; i < 7; i++) {
             let day = {
-                icon: originArr[i].icon, 
-                datetime: originArr[i].datetime, 
-                temp: originArr[i].temp, 
-                tempmax: originArr[i].tempmax, 
-                tempmin: originArr[i].tempmin, 
-                precipprob: originArr[i].precipprob, 
+                icon: originArrDays[i].icon, 
+                datetime: originArrDays[i].datetime, 
+                temp: originArrDays[i].temp, 
+                tempmax: originArrDays[i].tempmax, 
+                tempmin: originArrDays[i].tempmin, 
+                precipprob: originArrDays[i].precipprob, 
             }
-            processedArr.push(day); 
+            processedArrDays.push(day); 
         }
-        console.log(processedArr); 
-        localStorage.setItem("data", JSON.stringify(processedArr)); 
+        console.log(processedArrDays); 
+        localStorage.setItem("day", JSON.stringify(processedArrDays)); 
       })
       .catch(err => {
         console.error(err);

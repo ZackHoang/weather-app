@@ -31,15 +31,15 @@ form {
 }
 
 .weather_days {
-    border: 1px solid white;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
+    padding: 20px;
 }
 
 .weather_days_card {
     background-color: #2a9d8f;
-    padding: 50px;
+    border-radius: 50px;
 }
 
 .weather_days_card_main {
@@ -66,7 +66,6 @@ form {
 .weather_days_card_today_col {
     display: flex;
     flex-direction: column; 
-    gap: 55px;
 }
 
 #weather_days_card_container {
@@ -74,5 +73,10 @@ form {
     grid-template-rows: 1fr;
     grid-template-columns: repeat(6, 1fr);
     gap: 10px;
+}
+
+img {
+    width: 100px; 
+    height: auto; 
 }
 

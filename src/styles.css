@@ -7,7 +7,7 @@ body {
     color: #e9c46a;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
 #city_name {

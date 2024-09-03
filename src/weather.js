@@ -1,7 +1,9 @@
-function startStorage() {
-    localStorage.setItem("day", JSON.stringify([])); 
-    localStorage.setItem("city", ""); 
-    localStorage.setItem("icons", JSON.stringify([])); 
+import { format, parseISO } from "date-fns"; 
+
+function startStorage () {
+  localStorage.setItem("day", JSON.stringify([])); 
+  localStorage.setItem("city", "Vancouver"); 
+  localStorage.setItem("icons", JSON.stringify([])); 
 }
 
 //Fetch weather data
@@ -47,6 +49,7 @@ function getWeather (location) {
       });
 }
 
+//Display weather on each card
 function displayWeather () {
   const city = document.querySelector("#city_name"); 
   const dates = document.querySelectorAll(".weather_days_card_date"); 
@@ -71,11 +74,11 @@ function displayWeather () {
   windSpeed.textContent = `${weather[0].windspeed} km/h`; 
   uvindex.textContent = weather[0].uvindex; 
   humidity.textContent = `${weather[0].humidity}%`; 
-  sunrise.textContent = `${weather[0].sunrise}`; 
-  sunset.textContent = `${weather[0].sunset}`; 
+  sunrise.textContent = weather[0].sunrise;  
+  sunset.textContent = weather[0].sunset; 
 
   for (let i = 0; i < weather.length; i++) {
-    dates[i].textContent = weather[i].datetime; 
+    dates[i].textContent = format(parseISO(weather[i].datetime), "cccc"); 
     temps[i].textContent = `${weather[i].temp}\u{00B0}C`; 
     tempMax[i].textContent = `Max: ${weather[i].tempmax}\u{00B0}C`; 
     tempMin[i].textContent = `Min: ${weather[i].tempmin}\u{00B0}C`;  
@@ -85,4 +88,4 @@ function displayWeather () {
   }
 }
 
-export {getWeather, startStorage, displayWeather}; 
+export {getWeather, displayWeather, startStorage}; 
